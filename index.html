@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <!-- META: inyectadas por config-loader.js -->
+  <title>Cargando…</title>
+  <meta name="description" content="">
+  <meta property="og:title"       content="">
+  <meta property="og:description" content="">
+  <meta property="og:image"       content="">
+
+  <!-- FUENTES -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- ESTILOS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/sections/hero.css">
+  <link rel="stylesheet" href="css/sections/countdown.css">
+  <link rel="stylesheet" href="css/sections/gallery.css">
+  <link rel="stylesheet" href="css/sections/rsvp.css">
+  <link rel="stylesheet" href="css/utils.css">
+</head>
+<body>
+
+  <!-- ══ 1. HERO ══════════════════════════════════════════ -->
+  <section id="hero" aria-label="Portada">
+
+    <img id="hero-foto" src="" alt="" class="hero-bg-photo">
+
+    <div class="hero-content">
+      <p class="hero-greeting" id="hero-greeting"><!-- config: hero.saludo_default / ?invitado= --></p>
+
+      <div class="hero-photo-frame" id="hero-frame">
+        <!-- Si config.hero.foto_path existe, se inyecta <img> aquí via JS -->
+      </div>
+
+      <p class="hero-name"    id="hero-nombre"><!-- config: evento.nombre --></p>
+      <p class="hero-subtitle" id="hero-subtitulo"><!-- config: hero.subtitulo --></p>
+      <div class="hero-date-pill" id="hero-fecha"><!-- config: evento.fecha_display --></div>
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+        <path d="M6 8.5L1 3.5h10L6 8.5z"/>
+      </svg>
+      deslizá
+    </div>
+  </section>
+
+  <!-- Botón música (fixed, top-right) -->
+  <button id="music-btn" aria-label="Reproducir o pausar música de fondo">
+    <div class="music-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
+    </div>
+    <div class="music-wave" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <span class="music-label" id="music-label">Música</span>
+  </button>
+  <!-- src inyectado por config-loader -->
+  <audio id="bg-music" loop preload="none"></audio>
+
+  <!-- Toast portapapeles -->
+  <div id="toast" role="status" aria-live="polite">✓ Copiado al portapapeles</div>
+
+
+  <!-- ══ 2. BIENVENIDA ════════════════════════════════════ -->
+  <section id="bienvenida" aria-label="Mensaje de bienvenida">
+    <div class="ornament" aria-hidden="true">· · ·</div>
+    <p class="bienvenida-text fade-in" id="bienvenida-texto"><!-- config: bienvenida.texto --></p>
+    <span class="bienvenida-firma fade-in" id="bienvenida-firma"><!-- config: bienvenida.firma --></span>
+    <div class="divider" aria-hidden="true"><div class="divider-diamond"></div></div>
+  </section>
+
+
+  <!-- ══ 3. COUNTDOWN ════════════════════════════════════ -->
+  <section id="countdown" aria-label="Cuenta regresiva">
+    <p class="section-label">el gran momento</p>
+    <h2 class="section-title fade-in">Faltan...</h2>
+    <div class="countdown-grid" role="timer" aria-label="Cuenta regresiva al evento">
+      <div class="countdown-item">
+        <span class="countdown-number" id="cd-days"  aria-label="días">--</span>
+        <span class="countdown-label" aria-hidden="true">días</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-number" id="cd-hours" aria-label="horas">--</span>
+        <span class="countdown-label" aria-hidden="true">horas</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-number" id="cd-mins"  aria-label="minutos">--</span>
+        <span class="countdown-label" aria-hidden="true">min</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-number" id="cd-secs"  aria-label="segundos">--</span>
+        <span class="countdown-label" aria-hidden="true">seg</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ 4. UBICACIÓN ════════════════════════════════════ -->
+  <section id="ubicacion" aria-label="Datos del evento">
+    <p class="section-label">¿dónde nos vemos?</p>
+    <h2 class="section-title fade-in">La fiesta</h2>
+    <div class="ubicacion-card fade-in">
+      <p class="ubicacion-venue" id="salon-nombre"><!-- config: salon.nombre --></p>
+      <div class="ornament" aria-hidden="true" style="font-size:.8rem;margin:.5rem 0">· ✦ ·</div>
+      <div class="ubicacion-details">
+        <strong id="salon-fecha-hora"><!-- config: evento.fecha_display + salon.horario --></strong><br>
+        <span id="salon-direccion"><!-- config: salon.direccion --></span>
+      </div>
+      <a class="btn-maps" id="btn-maps" href="#" target="_blank" rel="noopener" aria-label="Abrir ubicación en Google Maps">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5 2.5 2.5 0 0 1 12 11.5z"/>
+        </svg>
+        Cómo llegar
+      </a>
+    </div>
+  </section>
+
+
+  <!-- ══ 5. GALERÍA ══════════════════════════════════════ -->
+  <section id="galeria" aria-label="Galería de fotos">
+    <p class="section-label">momentos</p>
+    <h2 class="section-title fade-in" id="galeria-titulo"><!-- config: galeria.titulo --></h2>
+    <!-- Las <img> se generan dinámicamente por gallery.js desde config.galeria.fotos -->
+    <div class="gallery-grid fade-in" id="gallery-grid" role="list"></div>
+  </section>
+
+
+  <!-- ══ 6. DRESS CODE + INSTAGRAM ═══════════════════════ -->
+  <section id="dresscode" aria-label="Dress code">
+    <p class="section-label">dress code</p>
+    <h2 class="section-title fade-in">La noche pide elegancia</h2>
+    <p class="dresscode-note fade-in" id="dresscode-descripcion"><!-- config: dresscode.descripcion --></p>
+    <!-- Los chips de color se generan dinámicamente desde config.dresscode.paleta -->
+    <div class="dresscode-palette fade-in" id="dresscode-palette" role="list" aria-label="Paleta de colores sugerida"></div>
+    <p class="dresscode-note fade-in" id="dresscode-restriccion" style="opacity:.6;font-size:.85rem"><!-- config: dresscode.restriccion --></p>
+    <div class="divider" aria-hidden="true" style="max-width:200px;margin:1.5rem auto">
+      <div class="divider-diamond"></div>
+    </div>
+    <p class="dresscode-note">¡Usá el hashtag y etiquetame en tus fotos y videos!</p>
+    <a class="btn-instagram" id="btn-instagram" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+      </svg>
+      <span id="instagram-hashtag"><!-- config: instagram.hashtag --></span>
+    </a>
+  </section>
+
+
+  <!-- ══ 7. PLAYLIST ═════════════════════════════════════ -->
+  <section id="playlist" aria-label="Playlist colaborativa">
+    <p class="section-label">¡ponele onda!</p>
+    <h2 class="section-title fade-in">Playlist colaborativa</h2>
+    <p class="playlist-note fade-in" id="playlist-texto"><!-- config: playlist.texto --></p>
+    <a class="btn-secondary" id="btn-playlist" href="#" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/>
+      </svg>
+      Sugerir canción
+    </a>
+  </section>
+
+
+  <!-- ══ 8. REGALOS ══════════════════════════════════════ -->
+  <section id="regalos" aria-label="Información para regalos">
+    <p class="section-label">si querés regalarme algo</p>
+    <h2 class="section-title fade-in">Regalos</h2>
+    <p class="regalos-intro fade-in" id="regalos-intro"><!-- config: regalos.texto_intro --></p>
+    <div class="regalos-card fade-in" aria-label="Datos bancarios">
+      <div class="regalos-card-header">Transferencia bancaria</div>
+      <div class="regalos-row">
+        <span class="regalos-key">Titular</span>
+        <span class="regalos-value" id="regalo-titular"><!-- config: regalos.titular --></span>
+      </div>
+      <div class="regalos-row">
+        <span class="regalos-key">Banco</span>
+        <span class="regalos-value" id="regalo-banco"><!-- config: regalos.banco --></span>
+      </div>
+      <div class="regalos-row">
+        <span class="regalos-key">CBU</span>
+        <span class="regalos-value" id="regalo-cbu" style="font-size:.7rem"><!-- config: regalos.cbu --></span>
+      </div>
+      <div class="regalos-row">
+        <span class="regalos-key">Alias</span>
+        <div style="display:flex;align-items:center;gap:.5rem;margin-left:auto">
+          <span class="regalos-value" id="regalo-alias"><!-- config: regalos.alias --></span>
+          <button class="btn-copy" id="btn-copy-alias" aria-label="Copiar alias al portapapeles">Copiar</button>
+        </div>
+      </div>
+    </div>
+    <p class="regalos-footer" id="regalos-footer"><!-- config: regalos.texto_footer --></p>
+  </section>
+
+
+  <!-- ══ 9. TRIVIA ═══════════════════════════════════════ -->
+  <section id="trivia" aria-label="Trivia interactiva">
+    <p class="section-label">¿cuánto me conocés?</p>
+    <h2 class="section-title fade-in">Trivia de <span id="trivia-apodo"><!-- config: evento.apodo --></span></h2>
+    <p class="section-subtitle fade-in">Ponete a prueba antes de la fiesta</p>
+    <!-- Toda la UI de trivia es generada por trivia.js desde config.trivia -->
+    <div class="trivia-card" id="trivia-container"></div>
+  </section>
+
+
+  <!-- ══ 10. RSVP ════════════════════════════════════════ -->
+  <section id="rsvp" aria-label="Confirmación de asistencia">
+    <p class="section-label">¡te esperamos!</p>
+    <h2 class="section-title fade-in">Confirmá tu asistencia</h2>
+    <p class="rsvp-deadline fade-in">
+      Confirmá antes del <span id="rsvp-fecha-limite"><!-- config: rsvp.fecha_limite_display --></span>
+    </p>
+    <!-- Las opciones de dieta se generan dinámicamente desde config.rsvp.opciones_dieta -->
+    <div class="rsvp-form fade-in" id="rsvp-form-wrap">
+
+      <div class="form-field">
+        <label class="form-label" for="f-nombre">Nombre y Apellido</label>
+        <input class="form-input" type="text" id="f-nombre"
+               placeholder="Ej: María González" autocomplete="name">
+      </div>
+
+      <div class="form-field">
+        <label class="form-label">¿Confirmás tu asistencia?</label>
+        <div class="rsvp-toggle">
+          <button class="toggle-btn active-si active" id="btn-si">✓ Sí, voy</button>
+          <button class="toggle-btn"                  id="btn-no">✗ No puedo</button>
+        </div>
+      </div>
+
+      <div class="form-field" id="extra-fields">
+        <label class="form-label" for="f-acomp">¿Venís solo/a o con acompañante?</label>
+        <select class="form-input" id="f-acomp">
+          <option value="">Seleccioná una opción</option>
+          <option value="1">Solo/a</option>
+          <option value="2">Con 1 acompañante</option>
+          <option value="3">Con 2 acompañantes</option>
+          <option value="mas">Con más personas</option>
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label class="form-label">Restricciones alimenticias</label>
+        <!-- Generado dinámicamente por rsvp.js desde config.rsvp.opciones_dieta -->
+        <div class="diet-options" id="diet-options-container"></div>
+      </div>
+
+      <div class="form-field">
+        <label class="form-label" for="f-mensaje">Un mensaje para <span class="rsvp-apodo"><!-- config: evento.apodo --></span> (opcional)</label>
+        <textarea class="form-textarea" id="f-mensaje"
+                  placeholder="Escribile algo lindo para su noche especial…" rows="3"></textarea>
+      </div>
+
+      <button class="btn-rsvp" id="btn-rsvp-submit">Confirmar asistencia</button>
+    </div>
+
+    <div class="rsvp-success" id="rsvp-success" aria-live="polite">
+      <div class="rsvp-success-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M9 12l2 2 4-4m5 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"
+                stroke="currentColor" stroke-width="2" fill="none"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <p class="rsvp-success-title">¡Gracias, <span id="rsvp-name-display">amigo/a</span>!</p>
+      <p class="rsvp-success-text" id="rsvp-mensaje-exito"><!-- config: rsvp.mensaje_exito --></p>
+    </div>
+  </section>
+
+
+  <!-- ══ FOOTER ══════════════════════════════════════════ -->
+  <footer>
+    <div class="ornament" aria-hidden="true" style="margin-bottom:1rem;opacity:.4">· · · ✦ · · ·</div>
+    <p class="footer-name" id="footer-nombre"><!-- config: evento.nombre --></p>
+    <p class="footer-year" id="footer-fecha"><!-- config: evento.fecha_display --></p>
+    <div class="footer-credit">Invitación digital · Hecha con amor</div>
+  </footer>
+
+
+  <!-- SCRIPTS: app.js carga todo en orden -->
+  <script type="module" src="js/app.js"></script>
+
+</body>
+</html>
