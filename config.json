@@ -116,7 +116,7 @@
   },
 
   "audio": {
-    "src": "assets/audio/cancion.mp3"
+    "src": "./assets/audio/cancion.mp3"
   },
 
   "colores": {
