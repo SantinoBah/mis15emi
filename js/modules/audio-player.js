@@ -1,7 +1,8 @@
 /**
  * audio-player.js
- * Sin autoplay — el usuario inicia la música con el botón.
- * El botón cambia entre ícono de nota y ondas animadas.
+ * - Intenta reproducir música automáticamente al cargar.
+ * - Si el browser bloquea el autoplay, espera el primer toque del usuario.
+ * - Botón pill top-right con label dinámica "Música / Pausar".
  */
 export function initAudioPlayer() {
   const btn   = document.getElementById("music-btn");
@@ -18,14 +19,29 @@ export function initAudioPlayer() {
     if (label) label.textContent = state ? "Pausar" : "Música";
   }
 
-  btn.addEventListener("click", () => {
+  // Intentar autoplay directo
+  audio.play()
+    .then(() => setPlaying(true))
+    .catch(() => {
+      // Browser bloqueó autoplay — esperamos primer interacción del usuario
+      const unlockEvents = ["touchstart", "touchend", "click", "keydown"];
+      function unlock() {
+        audio.play().then(() => {
+          setPlaying(true);
+          unlockEvents.forEach(e => document.removeEventListener(e, unlock));
+        }).catch(() => {});
+      }
+      unlockEvents.forEach(e => document.addEventListener(e, unlock, { once: true }));
+    });
+
+  // Botón manual
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation(); // no dispara el listener de unlock
     if (playing) {
       audio.pause();
       setPlaying(false);
     } else {
-      audio.play()
-        .then(() => setPlaying(true))
-        .catch(err => console.warn("Audio bloqueado:", err));
+      audio.play().then(() => setPlaying(true)).catch(() => {});
     }
   });
 }
