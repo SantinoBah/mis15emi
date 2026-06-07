@@ -1,0 +1,138 @@
+{
+  "_comentario": "ARCHIVO DE CONFIGURACIÓN · Quinces Emilia Bahamondi · Editá solo este archivo para personalizar la invitación",
+
+  "evento": {
+    "nombre":        "Emilia",
+    "apodo":         "Emi",
+    "fecha_iso":     "2026-11-06T21:00:00",
+    "fecha_display": "Viernes 6 de Noviembre, 2026",
+    "hora_display":  "21:00 hs"
+  },
+
+  "hero": {
+    "foto_path":      "assets/img/hero-portada.webp",
+    "saludo_default": "¡Te esperamos con todo el corazón!",
+    "subtitulo":      "sus quince años"
+  },
+
+  "bienvenida": {
+    "texto": "Quince años llegan una sola vez,\ny yo quiero vivirlos rodeada\nde las personas que más quiero.\n¡Los espero con todo mi corazón!",
+    "firma": "Emi"
+  },
+
+  "salon": {
+    "nombre":    "Villa Golf Eventos",
+    "direccion": "Río de Janeiro 2001, Villa Allende, Córdoba",
+    "horario":   "21:00 hs · Hasta que el cuerpo aguante",
+    "maps_url":  "https://maps.app.goo.gl/zceNb2ACcju3Utg29"
+  },
+
+  "dresscode": {
+    "descripcion": "Elegante sport. ¡vengan cómodos y con onda!",
+    "restriccion": "Colores prohibidos: Verde · Rojo · Plateado · Dorado"
+  },
+
+  "instagram": {
+    "hashtag": "@emibahamondi_",
+    "url":     "https://instagram.com/emibahamondi_"
+  },
+
+  "playlist": {
+    "texto":     "¿Qué canción no puede faltar en mi fiesta?\n¡Sugerime la tuya!",
+    "forms_url": "https://forms.gle/GzZnFUrh2eGuGvBv9"
+  },
+
+  "galeria": {
+    "titulo": "Una vida en fotos",
+    "fotos": [
+      { "src": "assets/img/galeria/04.webp", "alt": "Emi saltando con su caballo" },
+      { "src": "assets/img/galeria/02.webp", "alt": "Emi a caballo con roseta azul" },
+      { "src": "assets/img/galeria/03.webp", "alt": "Emi de bebé en Navidad" },
+      { "src": "assets/img/galeria/05.webp", "alt": "Emi de niña con Hello Kitty" },
+      { "src": "assets/img/galeria/01.webp", "alt": "Emi en competencia de salto" }
+    ]
+  },
+
+  "regalos": {
+    "texto_intro":  "Lo más lindo es que vengas y la pases genial.\nPero si querés colaborar con mis sueños, acá van los datos:",
+    "texto_footer": "También habrá un buzón de regalos el día del evento ✨",
+    "titular":      "Emilia Bahamondi",
+    "banco":        "Mercado Pago",
+    "cbu":          "0000003100056279142411",
+    "alias":        "emi.bah.mp"
+  },
+
+  "trivia": {
+    "preguntas": [
+      {
+        "pregunta": "¿Cuántos hermanos tiene Emi?",
+        "opciones":  ["1", "4", "2", "No tiene"],
+        "correcta":  2
+      },
+      {
+        "pregunta": "¿A qué edad empezó con la equitación?",
+        "opciones":  ["3 años", "10 años", "12 años", "8 años"],
+        "correcta":  3
+      },
+      {
+        "pregunta": "¿Qué mascota le gustaría tener?",
+        "opciones":  ["Un conejo", "Un caballo", "Un perro", "Un gato"],
+        "correcta":  2
+      },
+      {
+        "pregunta": "¿Cuál es su artista favorito?",
+        "opciones":  ["Bad Bunny", "Taylor Swift", "Tini Stoessel", "Justin Bieber"],
+        "correcta":  2
+      },
+      {
+        "pregunta": "¿Cómo se llama su caballo?",
+        "opciones":  ["Chocolate", "Firpo", "Gitana", "Sultán"],
+        "correcta":  1
+      }
+    ],
+    "mensajes_resultado": [
+      "Uy... ¡necesitás conocer más a Emi! Eso se arregla en la fiesta 😄",
+      "¡Casi! Una excusa más para charlar esa noche 🥂",
+      "Bien bien… hay potencial 🌸",
+      "¡No está nada mal! Ya sos casi un experto/a en Emi 💕",
+      "¡Muy bien! La conocés de verdad 🎉",
+      "¡Perfecto! Definitivamente sos de su círculo de confianza ✨"
+    ]
+  },
+
+  "rsvp": {
+    "fecha_limite_display": "30 de Octubre",
+    "apps_script_url": "https://script.google.com/macros/s/AKfycbzfGITlNRHDqr-8ZKzX7JTyGVbzopPxomfUeATU2UvWs1uabCIJqol_9IkP1vYEkvcu/exec",
+    "forms_url": "https://forms.gle/REEMPLAZAR_CON_LINK_REAL",
+    "opciones_dieta": [
+      { "valor": "ninguna",     "label": "Ninguna",        "tipo": "check" },
+      { "valor": "celiaco",     "label": "Celíaco/a",      "tipo": "check" },
+      { "valor": "vegetariano", "label": "Vegetariano/a",  "tipo": "check" },
+      { "valor": "vegano",      "label": "Vegano/a",       "tipo": "check" },
+      { "valor": "alergia",     "label": "Alergias",       "tipo": "texto", "placeholder": "¿A qué sos alérgico/a?" },
+      { "valor": "otro",        "label": "Otro",           "tipo": "texto", "placeholder": "Contanos..." }
+    ],
+    "mensaje_exito": "Tu confirmación fue registrada.\n¡Emi ya sabe que vas a estar en su noche especial! 🌸"
+  },
+
+  "audio": {
+    "src": "assets/audio/cancion.mp3"
+  },
+
+  "colores": {
+    "rose":       "#C9968A",
+    "rose_light": "#F2E4DF",
+    "rose_pale":  "#FAF3F1",
+    "gold":       "#B8976A",
+    "gold_light": "#E8D9C0",
+    "cream":      "#FDF8F5",
+    "dark":       "#2C2320",
+    "mid":        "#6B5652"
+  },
+
+  "meta": {
+    "titulo_pagina": "Mis 15 · Emilia Bahamondi",
+    "descripcion":   "Estás invitado/a a los 15 años de Emilia — 6 de Noviembre 2026, Villa Golf Eventos, Villa Allende",
+    "og_image":      "assets/img/hero-portada.webp"
+  }
+}

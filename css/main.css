@@ -1,0 +1,349 @@
+/* ─────────────────────────────────────────────────────────
+   main.css · Reset + Variables CSS + Estilos globales
+   Las variables de color son sobrescritas en runtime por
+   config-loader.js → applyCSSVars()
+   ───────────────────────────────────────────────────────── */
+
+/* FALLBACK de variables (mientras carga el config) */
+:root {
+  --c-rose:       #C9968A;
+  --c-rose-light: #F2E4DF;
+  --c-rose-pale:  #FAF3F1;
+  --c-gold:       #B8976A;
+  --c-gold-light: #E8D9C0;
+  --c-cream:      #FDF8F5;
+  --c-dark:       #2C2320;
+  --c-mid:        #6B5652;
+  --c-border:     rgba(184,151,106,0.25);
+
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans:  'Jost', system-ui, sans-serif;
+  --section-pad: clamp(3rem, 8vw, 5rem);
+}
+
+/* RESET */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html  { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body  {
+  font-family: var(--font-sans);
+  background: var(--c-cream);
+  color: var(--c-dark);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+img   { display: block; max-width: 100%; }
+a     { color: inherit; }
+button { font-family: inherit; }
+
+/* SECCIÓN BASE */
+section { padding: var(--section-pad) 1.5rem; }
+
+.section-label {
+  font-family: var(--font-sans);
+  font-size: 0.65rem; font-weight: 500;
+  letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--c-rose); margin-bottom: 0.5rem;
+  text-align: center; display: block;
+}
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 6vw, 2.8rem);
+  font-weight: 300; line-height: 1.2;
+  text-align: center; color: var(--c-dark);
+  margin-bottom: 0.5rem;
+}
+.section-subtitle {
+  font-family: var(--font-serif); font-size: 1rem;
+  font-style: italic; color: rgba(253,248,245,0.5);
+  text-align: center; margin-top: 0.25rem; margin-bottom: 2rem;
+}
+
+/* ORNAMENTOS */
+.ornament {
+  text-align: center; color: var(--c-gold);
+  font-size: 1.1rem; letter-spacing: 0.4em;
+  margin: 0.5rem 0; opacity: 0.7;
+}
+.divider {
+  display: flex; align-items: center; gap: 1rem;
+  margin: 2rem auto; max-width: 280px;
+}
+.divider::before, .divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: var(--c-border);
+}
+.divider-diamond {
+  width: 6px; height: 6px;
+  background: var(--c-gold); transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+/* BOTONES COMPARTIDOS */
+.btn-maps,
+.btn-instagram,
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-sans); font-size: 0.65rem;
+  font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
+  padding: 0.85rem 2rem; text-decoration: none; cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  border: none;
+}
+.btn-maps svg, .btn-instagram svg, .btn-secondary svg {
+  width: 14px; height: 14px; fill: currentColor; flex-shrink: 0;
+}
+.btn-maps {
+  background: var(--c-dark); color: #FDF8F5;
+}
+.btn-maps:hover { background: var(--c-rose); }
+
+.btn-instagram {
+  border: 1px solid rgba(184,151,106,0.4);
+  color: var(--c-gold); background: transparent;
+}
+.btn-instagram svg { width: 16px; height: 16px; }
+.btn-instagram:hover {
+  background: rgba(184,151,106,0.1);
+  border-color: var(--c-gold);
+}
+.btn-secondary {
+  border: 1px solid var(--c-rose);
+  color: var(--c-rose); background: transparent;
+}
+.btn-secondary:hover { background: var(--c-rose); color: #fff; }
+
+/* TOAST */
+#toast {
+  position: fixed; bottom: 5rem; left: 50%;
+  transform: translateX(-50%);
+  background: var(--c-dark); color: var(--c-gold);
+  font-family: var(--font-sans); font-size: 0.7rem;
+  letter-spacing: 0.15em; padding: 0.7rem 1.5rem;
+  pointer-events: none; opacity: 0;
+  transition: opacity 0.3s; z-index: 1000;
+  white-space: nowrap;
+}
+#toast.show { opacity: 1; }
+
+/* BIENVENIDA */
+#bienvenida { background: var(--c-cream); text-align: center; }
+.bienvenida-text {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 4vw, 1.4rem);
+  font-weight: 300; line-height: 1.9; color: var(--c-mid);
+  max-width: 340px; margin: 0 auto;
+}
+.bienvenida-firma {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 8vw, 2.6rem);
+  font-style: italic; font-weight: 300;
+  color: var(--c-rose); margin-top: 1.5rem; display: block;
+}
+
+/* UBICACIÓN */
+#ubicacion { background: var(--c-rose-pale); }
+.ubicacion-card {
+  max-width: 380px; margin: 2rem auto 0;
+  border: 1px solid var(--c-border);
+  background: #fff; padding: 2rem 1.5rem; text-align: center;
+}
+.ubicacion-venue {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 5vw, 1.8rem);
+  font-weight: 400; color: var(--c-dark); margin-bottom: 0.25rem;
+}
+.ubicacion-details {
+  font-family: var(--font-sans); font-size: 0.8rem;
+  color: var(--c-mid); line-height: 2; margin-bottom: 1.5rem;
+}
+.ubicacion-details strong { color: var(--c-dark); font-weight: 500; }
+
+/* DRESS CODE */
+#dresscode {
+  background: var(--c-dark);
+  padding: var(--section-pad) 1.5rem; text-align: center;
+}
+#dresscode .section-label { color: var(--c-gold-light); opacity: 0.7; }
+#dresscode .section-title { color: #FDF8F5; }
+.dresscode-palette {
+  display: flex; justify-content: center;
+  gap: 0.6rem; margin: 2rem auto; flex-wrap: wrap;
+}
+.color-chip { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
+.color-chip-dot {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1px solid rgba(253,248,245,0.15);
+}
+.color-chip-name {
+  font-family: var(--font-sans); font-size: 0.55rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(253,248,245,0.5);
+}
+.dresscode-note {
+  font-family: var(--font-serif); font-size: 1rem;
+  font-style: italic; color: rgba(253,248,245,0.6);
+  max-width: 280px; margin: 0 auto 2rem; line-height: 1.7;
+}
+
+/* PLAYLIST */
+#playlist { background: var(--c-rose-pale); text-align: center; }
+.playlist-note {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 3.5vw, 1.2rem);
+  font-style: italic; color: var(--c-mid);
+  max-width: 300px; margin: 1rem auto 2rem; line-height: 1.8;
+}
+
+/* REGALOS */
+#regalos { background: var(--c-cream); }
+.regalos-intro {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 3.5vw, 1.15rem);
+  font-style: italic; color: var(--c-mid);
+  max-width: 320px; margin: 0.5rem auto 0;
+  line-height: 1.9; text-align: center;
+}
+.regalos-card {
+  max-width: 380px; margin: 2rem auto;
+  border: 1px solid var(--c-border);
+  background: #fff; overflow: hidden;
+}
+.regalos-card-header {
+  background: var(--c-dark); padding: 1rem 1.5rem;
+  font-family: var(--font-sans); font-size: 0.6rem;
+  font-weight: 500; letter-spacing: 0.35em;
+  text-transform: uppercase; color: var(--c-gold);
+}
+.regalos-row {
+  display: flex; align-items: center;
+  justify-content: space-between; padding: 0.9rem 1.5rem;
+  border-bottom: 1px solid var(--c-border);
+}
+.regalos-row:last-child { border-bottom: none; }
+.regalos-key {
+  font-family: var(--font-sans); font-size: 0.7rem;
+  color: var(--c-mid); font-weight: 400; flex-shrink: 0;
+}
+.regalos-value {
+  font-family: var(--font-sans); font-size: 0.8rem;
+  color: var(--c-dark); font-weight: 500;
+  text-align: right; margin-left: 1rem;
+}
+.regalos-footer {
+  text-align: center; font-family: var(--font-serif);
+  font-style: italic; color: var(--c-mid);
+  font-size: .85rem; margin-top: .5rem;
+}
+.btn-copy {
+  background: none; border: 1px solid var(--c-border);
+  color: var(--c-mid); font-family: var(--font-sans);
+  font-size: 0.55rem; letter-spacing: 0.2em;
+  text-transform: uppercase; padding: 0.3rem 0.7rem;
+  cursor: pointer; transition: all 0.2s;
+  white-space: nowrap; margin-left: 0.75rem; flex-shrink: 0;
+}
+.btn-copy:hover { background: var(--c-dark); color: #FDF8F5; border-color: var(--c-dark); }
+.btn-copy.copied { background: var(--c-rose); color: #fff; border-color: var(--c-rose); }
+
+/* TRIVIA */
+#trivia { background: var(--c-dark); padding: var(--section-pad) 1.5rem; }
+#trivia .section-label { color: var(--c-gold-light); opacity: 0.7; }
+#trivia .section-title { color: #FDF8F5; }
+.trivia-card {
+  max-width: 420px; margin: 0 auto;
+  background: rgba(253,248,245,0.05);
+  border: 1px solid rgba(184,151,106,0.2);
+  padding: 2rem 1.5rem;
+}
+.trivia-progress-bar {
+  height: 2px; background: rgba(184,151,106,0.2);
+  margin-bottom: 2rem; overflow: hidden;
+}
+.trivia-progress-fill {
+  height: 100%; background: var(--c-gold);
+  transition: width 0.4s ease;
+}
+.trivia-q-number {
+  font-family: var(--font-sans); font-size: 0.6rem;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--c-gold); margin-bottom: 0.75rem;
+}
+.trivia-question {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 4vw, 1.4rem);
+  font-weight: 300; color: #FDF8F5;
+  line-height: 1.5; margin-bottom: 1.5rem; min-height: 3em;
+}
+.trivia-options { display: flex; flex-direction: column; gap: 0.6rem; }
+.trivia-option {
+  background: rgba(253,248,245,0.04);
+  border: 1px solid rgba(184,151,106,0.2);
+  color: rgba(253,248,245,0.75); font-family: var(--font-sans);
+  font-size: 0.8rem; padding: 0.85rem 1.25rem;
+  text-align: left; cursor: pointer; transition: all 0.2s;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.trivia-option:hover:not(:disabled) {
+  background: rgba(201,150,138,0.15);
+  border-color: var(--c-rose); color: #FDF8F5;
+}
+.trivia-option.correct { background: rgba(139,178,111,0.2); border-color: #8BB26F; color: #B8D9A0; }
+.trivia-option.wrong   { background: rgba(201,100,88,0.2);  border-color: #C96458; color: #E8A09A; }
+.trivia-option:disabled { cursor: default; }
+.option-letter {
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 1px solid rgba(184,151,106,0.35);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.65rem; font-weight: 500; color: var(--c-gold);
+  flex-shrink: 0; transition: all 0.2s;
+}
+.trivia-option.correct .option-letter { background: #8BB26F; border-color: #8BB26F; color: #fff; }
+.trivia-option.wrong   .option-letter { background: #C96458; border-color: #C96458; color: #fff; }
+.trivia-nav { display: flex; justify-content: flex-end; margin-top: 1.5rem; }
+.btn-next {
+  background: var(--c-gold); color: var(--c-dark);
+  font-family: var(--font-sans); font-size: 0.65rem;
+  font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase;
+  padding: 0.75rem 1.75rem; border: none; cursor: pointer;
+  transition: opacity 0.2s;
+}
+.btn-next:hover { opacity: 0.85; }
+.trivia-score {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 12vw, 4rem);
+  font-weight: 300; color: var(--c-gold); line-height: 1;
+}
+.trivia-result-msg {
+  font-family: var(--font-serif); font-size: 1.1rem;
+  font-style: italic; color: rgba(253,248,245,0.7);
+  margin-top: 0.75rem; line-height: 1.7;
+}
+.btn-restart {
+  margin-top: 1.5rem; background: transparent;
+  border: 1px solid rgba(184,151,106,0.4); color: var(--c-gold);
+  font-family: var(--font-sans); font-size: 0.65rem;
+  font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
+  padding: 0.75rem 1.75rem; cursor: pointer; transition: all 0.2s;
+}
+.btn-restart:hover { background: rgba(184,151,106,0.1); }
+
+/* FOOTER */
+footer {
+  background: var(--c-dark); text-align: center;
+  padding: 3rem 1.5rem;
+}
+.footer-name {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 8vw, 2.8rem);
+  font-style: italic; font-weight: 300; color: #FDF8F5;
+}
+.footer-year {
+  font-family: var(--font-sans); font-size: 0.6rem;
+  letter-spacing: 0.5em; color: var(--c-gold);
+  opacity: 0.6; margin-top: 0.5rem; text-transform: uppercase;
+}
+.footer-credit {
+  margin-top: 1.5rem; font-family: var(--font-sans);
+  font-size: 0.55rem; letter-spacing: 0.2em;
+  color: rgba(253,248,245,0.2); text-transform: uppercase;
+}
